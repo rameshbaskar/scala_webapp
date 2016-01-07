@@ -1,7 +1,23 @@
-@(message: String)
+@(contacts: List[Contact], contactForm: Form[(String, String, String)])(implicit messages: Messages)
 
-@main("Welcome to Play") {
+@import helper._
 
-    @play20.welcome(message)
+@main("Address Book") {
 
+    @helper.form(action = routes.Application.create(), 'id -> "contact_form") {
+        @helper.inputText(contactForm("firstName"), 'id -> "firstName", '_label -> "First Name")
+        @helper.inputText(contactForm("lastName"), 'id -> "lastName", '_label -> "Last Name")
+        @helper.inputText(contactForm("emailAddress"), 'id -> "lastName", '_label -> "Email")
+        <input type="submit" value="Create">
+    }
+
+    <h3>Displaying @contacts.size contact(s)</h3>
+    <ul>
+        @for(contact <- contacts) {
+            <li>
+                @contact.id) @contact.firstName @contact.lastName (@contact.emailAddress)
+                <a href="@routes.Application.delete(contact.id)">Delete</a>
+            </li>
+        }
+    </ul>
 }
