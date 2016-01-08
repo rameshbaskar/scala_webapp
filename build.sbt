@@ -11,7 +11,9 @@ libraryDependencies ++= Seq(
   cache,
   ws,
   specs2 % Test,
-  "mysql" % "mysql-connector-java" % "5.1.38"
+  "mysql" % "mysql-connector-java" % "5.1.38",
+  "com.typesafe.slick" %% "slick" % "3.0.0",
+  "org.slf4j" % "slf4j-nop" % "1.6.4"
 )
 
 resolvers += "scalaz-bintray" at "http://dl.bintray.com/scalaz/releases"
