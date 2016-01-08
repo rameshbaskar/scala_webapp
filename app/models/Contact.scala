@@ -8,15 +8,12 @@ case class Contact(id: Int, firstName: String, lastName: String, emailAddress: S
 object Contact extends Database {
 
   def create(firstName: String, lastName: String, emailAddress: String) = {
-    var sql = "INSERT INTO contacts (first_name, last_name, email_address) VALUES ('"
-    sql += firstName + "', '"
-    sql += lastName + "', '"
-    sql += emailAddress + "')"
+    val sql = s"INSERT INTO contacts (first_name,last_name,email_address) VALUES ('$firstName','$lastName','$emailAddress')"
     write(sql)
   }
 
   def delete(id: Int) = {
-    val sql = "DELETE FROM contacts WHERE id = " + id
+    val sql = s"DELETE FROM contacts WHERE id = $id"
     write(sql)
   }
 
