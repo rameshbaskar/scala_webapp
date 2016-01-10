@@ -7,7 +7,7 @@ import scala.collection.mutable
 
 case class Contact(id: Int, firstName: String, lastName: String, emailAddress: String)
 
-object Contact extends Database {
+object Contact {
 
   def create(firstName: String, lastName: String, emailAddress: String) = {
     val sql = s"INSERT INTO contacts (first_name,last_name,email_address) VALUES ('$firstName','$lastName','$emailAddress')"
