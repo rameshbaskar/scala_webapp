@@ -4,10 +4,10 @@
 
 @main("Address Book") {
 
-    @helper.form(action = routes.Application.create(), 'id -> "contact_form") {
-        @helper.inputText(contactForm("firstName"), 'id -> "firstName", '_label -> "First Name")
-        @helper.inputText(contactForm("lastName"), 'id -> "lastName", '_label -> "Last Name")
-        @helper.inputText(contactForm("emailAddress"), 'id -> "lastName", '_label -> "Email")
+    form(action = routes.Application.create(), 'id -> "contact_form") {
+        inputText(contactForm("firstName"), 'id -> "firstName", '_label -> "First Name")
+        inputText(contactForm("lastName"), 'id -> "lastName", '_label -> "Last Name")
+        inputText(contactForm("emailAddress"), 'id -> "lastName", '_label -> "Email")
         <input type="submit" value="Create">
     }
 
