@@ -1,6 +1,7 @@
 package models
 
 import play.api.db.DB
+import play.api.Play.current
 
 import scala.collection.immutable.SortedMap
 import scala.collection.mutable
