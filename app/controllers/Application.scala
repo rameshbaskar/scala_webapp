@@ -1,5 +1,6 @@
 package controllers
 
+import dao.ContactDAO
 import models.Contact
 import play.api.data.Form
 import play.api.data.Forms._
@@ -20,22 +21,27 @@ class Application @Inject()(val messagesApi: MessagesApi) extends Controller wit
   )
 
   def list() = Action {
-    Ok(views.html.index(Contact.list(), contactForm))
+    Ok(views.html.index(ContactDAO.all(), contactForm))
   }
 
   def create() = Action { implicit request =>
     contactForm.bindFromRequest().fold(
-      errors => BadRequest(views.html.index(Contact.list(), errors)),
+      errors => BadRequest(views.html.index(ContactDAO.all(), errors)),
       {
-        case (firstName, lastName, emailAddress) =>
-          Contact.create(firstName, lastName, emailAddress)
+        case (first_name, last_name, email_address) =>
+          val contact = new Contact {
+            firstName = first_name
+            lastName = last_name
+            emailAddress = email_address
+          }
+          ContactDAO.create(contact)
           Redirect(routes.Application.list())
       }
     )
   }
 
   def delete(id: Int) = Action {
-    Contact.delete(id)
+    ContactDAO.delete(id)
     Redirect(routes.Application.list())
   }
 }
