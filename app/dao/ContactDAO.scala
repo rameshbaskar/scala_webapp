@@ -1,11 +1,11 @@
 package dao
 
-import core.AddressBookStorage
+import core.ShowroomStorage
 import models.Contact
 
 import scala.collection.mutable
 
-object ContactDAO extends AddressBookStorage {
+object ContactDAO extends ShowroomStorage {
 
   def create(contact: Contact) = {
     val sql = s"INSERT INTO contacts (first_name,last_name,email_address) " +
