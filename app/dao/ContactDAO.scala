@@ -16,13 +16,13 @@ object ContactDAO extends ShowroomStorage {
   def all(): List[Contact] = {
     val sql = "SELECT * FROM contacts"
     val records = read(sql)
-    mapContacts(records)
+    mapRecords(records)
   }
 
   def findById(id: Int): Contact = {
     val sql = s"SELECT * FROM contacts WHERE id = $id"
     val records = read(sql)
-    mapContacts(records).head
+    mapRecords(records).head
   }
 
   def update(oldContact: Contact, newContact: Contact) = {
@@ -37,7 +37,7 @@ object ContactDAO extends ShowroomStorage {
     write(sql)
   }
 
-  private def mapContacts(records: List[mutable.Map[String, Object]]): List[Contact] = {
+  private def mapRecords(records: List[mutable.Map[String, Object]]): List[Contact] = {
     var contacts: Set[Contact] = Set()
     for(record <- records) {
       contacts += new Contact {
