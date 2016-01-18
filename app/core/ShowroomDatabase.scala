@@ -7,7 +7,7 @@ import play.api.Play.current
 
 import scala.collection.mutable
 
-class ShowroomStorage {
+class ShowroomDatabase {
 
   def write(sql: String) = {
     DB.withConnection {connection =>
